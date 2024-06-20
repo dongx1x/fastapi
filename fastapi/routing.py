@@ -28,6 +28,7 @@ from fastapi._compat import (
     _normalize_errors,
     lenient_issubclass,
 )
+from fastapi.attestation import measure_reaponse
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
@@ -321,6 +322,7 @@ def get_request_handler(
                 "and is not raising the exception again. Read more about it in the "
                 "docs: https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-except"
             )
+        measure_reaponse(response)
         return response
 
     return app
